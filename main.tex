@@ -2,245 +2,384 @@
 % !Mode:: "TeX:UTF-8"
 % !TEX program  = PdfLaTeX
 %%=======================================================================
-% 模板名称：thubeamer
-% 模板版本：V1.2
-% 模板作者：杨敬轩（Jingxuan Yang）
-% 联系作者：yangjx20@mails.tsinghua.edu.cn & yanglatex2e@gmail.com
-% 模板适用：清华大学风格 Beamer 模板
-% 模板编译：手动编译方法参看 README.md 或 thubeamer.pdf
-%          编译 beamer 之前必须编译说明文档：make doc 或双击 makedoc.bat
-%          编译说明文档同时分离出四个样式文件 *thubeamer.sty
-%          GNU make 工具：make beamer
-%          Windows 批处理脚本：双击 makebeamer.bat 自动编译 beamer
-%          更多编译细节详见说明文档：thubeamer.pdf
-% 更新时间：2023/11/27
-% 模板帮助：请**务必务必务必**阅读 thubeamer.pdf 说明文档，文档查看方法：
-%          下载模板文件夹里就有，如果是从 CTAN 上安装更新本模板，则通过
-%          cmd 命令行：texdoc thubeamer 查看文档
-%          推荐前往模板的 GitHub 仓库获取最新文件，地址：
-%          https://github.com/YangLaTeX/thubeamer
-%%=======================================================================
-
-% 设置文档类别为 <beamer>
-% \documentclass[aspectratio=169]{beamer} % 设置长宽比为 16:9
 \documentclass{beamer}
-
-% 使用 <thubeamer> 主题
-% 模板选项如下
-% (a.1) smoothbars: 页面顶端单行显示目录，默认选项
 \usetheme{thubeamer}
-
-% (a.2) sidebar: 页面左侧分栏显示目录
-% \usetheme[sidebar]{thubeamer}
-
-% (b) sectiontoc: 在每节（section）前显示目录，并高亮显示当前节，默认不显示
-
-% (c) subsectiontoc: 在每小节（subsection）前显示目录，并高亮显示当前节和当前小节，默认不显示
-
-% (d) en: 仅使用英文来制作 beamer，应用此选项后，汉字将全部无法编译
-
-% 图片存放路径
 \graphicspath{{figures/}}
-
 \include{macros}
 
-% 封面信息，方括号内容是显示在左侧边栏的内容（当选择 sidebar 主题时有效）
-\title[报告标题]{报告标题\\[2mm] 课程答辩}
-\author[杨敬轩]{学生：杨敬轩\\[5mm] 导师：XX 教授}
-\institute[清华大学]{\small  清华大学}
-\date{\small \vskip -10pt \today}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, calc}
 
-% 开始写文章
+% Define Rust language for listings
+\lstdefinelanguage{Rust}{
+  keywords={fn,let,mut,if,else,match,return,loop,while,for,in,struct,enum,impl,trait,pub,use,mod,self,super,crate,async,await,move,ref,and,or,not,true,false,None,Some,Ok,Err,where,as,const,static,type,unsafe,extern},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={bool,u8,u16,u32,u64,i32,i64,usize,isize,f64,String,Vec,Box,Arc,Mutex,Option,Result,Self},
+  ndkeywordstyle=\color{purple}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{red},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  language=Rust
+}
+
+\title[StarryOS 大作业]{StarryOS 大作业总结\\[2mm] 支持 jcode 运行的内核调试与修复}
+\author[姓名]{学生：姓名\\[5mm] 学号：XXXXXXXX}
+\institute[清华大学]{\small 清华大学}
+\date{\small \vskip -10pt 2026 年 6 月}
+
 \begin{document}
 
-% 标题页
+% ============================================================
+% 封面
+% ============================================================
 \begin{frame}
-	\maketitle
+  \maketitle
 \end{frame}
 
-% 目录页
+% ============================================================
+% 目录
+% ============================================================
 \section*{目录}
 \frame{
   \frametitle{\secname}
   \tableofcontents[hideallsubsections]
 }
 
-\section{研究内容及进度}
+% ============================================================
+% 1. 项目背景
+% ============================================================
+\section{项目背景}
 
-\subsection{课题主要研究内容}
-
-\begin{frame}{课题主要研究内容}
-  \begin{figure}
-    \includegraphics[width=0.4\linewidth]{thulogo}
-    \caption{课题主要研究内容}
-  \end{figure}
-\end{frame}
-
-\subsection{进度介绍}
-
-\begin{frame}{进度介绍}
-  \begin{figure}
-    \includegraphics[width=0.4\linewidth]{thulogo}
-    \caption{进度介绍}
-  \end{figure}
-\end{frame}
-
-\section{研究工作及成果}
-
-\begin{frame}{已完成的研究工作及成果}
-  \begin{block}{已完成的研究工作简介}
+\begin{frame}{jcode 是什么}
+  \begin{block}{jcode：一个 TUI（终端用户界面）应用}
     \begin{itemize}
-      \setlength{\itemsep}{6pt}
-      \item XXXX
-      \item XXXX
-      \item XXXX
-      \item XXXX
-      \item XXXX
-      \item XXXX
+      \setlength{\itemsep}{4pt}
+      \item 架构：TUI 进程 + serve 进程，通过 Unix socket 通信
+      \item 技术栈：ratatui 框架、Tokio 异步运行时、reqwest HTTP 客户端
+      \item 功能：AI 代码助手，支持鼠标点击、窗口调整、网络请求
     \end{itemize}
   \end{block}
-\end{frame}
-
-\subsection{研究工作一}
-
-\begin{frame}{研究工作一}
-  \begin{block}{无编号公式}
-    无编号公式示例：
-    $$
-      k:[-\pi,\pi] \rightarrow [0,1]
-    $$
-  \end{block}
-\end{frame}
-
-\subsection{研究工作二}
-
-\begin{frame}{研究工作二}
-  \begin{block}{有编号公式}
+  \begin{block}{对内核的要求}
     \begin{itemize}
-      \item 有编号公式示例：输入为图像 
-      \begin{equation}
-        \vx\in\reals^{C_{\text{in}}\times H\times W}
-      \end{equation}
-      其中 $C_{\text{in}}$ 表示通道, $H$ 表示图像高度, $W$ 表示图像深度.
+      \setlength{\itemsep}{4pt}
+      \item ext4 文件系统（读写文件）
+      \item Unix domain socket（进程间通信）
+      \item epoll + 非阻塞 I/O（Tokio 事件循环）
+      \item TCP/IP 网络（HTTPS 请求）
+      \item TTY 子系统（终端交互、鼠标、窗口大小）
     \end{itemize}
   \end{block}
+  \centering
+  \textbf{jcode 是一个"内核压力测试"——用到了几乎所有内核子系统}
 \end{frame}
 
-\subsection{研究工作三}
+\begin{frame}{运行架构}
+  \begin{tikzpicture}[
+    node distance=0.8cm and 1.2cm,
+    box/.style={rectangle, draw, rounded corners, minimum width=2.2cm, minimum height=0.8cm, align=center, font=\small},
+    arr/.style={-{Stealth[length=3mm]}, thick}
+  ]
+    \node[box] (host) {宿主机终端};
+    \node[box, below=of host] (ostool) {ostool\\{\tiny (用户态工具)}};
+    \node[box, below=of ostool] (qemu) {QEMU 虚拟机};
+    \node[box, below left=0.8cm and 0.5cm of qemu] (kernel) {StarryOS 内核};
+    \node[box, below right=0.8cm and 0.5cm of qemu] (jcode) {jcode 进程};
 
-\begin{frame}{研究工作三}
-  \begin{block}{表格}
-    表格示例, 如表 \ref{tab:unique_values} 所示. 
+    \draw[arr] (host) -- (ostool);
+    \draw[arr] (ostool) -- (qemu);
+    \draw[arr] (qemu) -- (kernel);
+    \draw[arr] (qemu) -- (jcode);
 
-    \begin{table}[htbp]
-      \small
-      \centering
-      \caption{train.csv 每列非重复元素个数}
-      \label{tab:unique_values}
-      \begin{tabular}{lc}
-        \toprule
-        column & \# unique values \\
-        \midrule
-        posting\_id & 34250 \\
-        image & 32412 \\
-        image\_phash & 28735 \\
-        title & 33117 \\
-        label\_group & 11014 \\
-        \bottomrule
-      \end{tabular}
-    \end{table}
-  \end{block}
+    \node[font=\tiny, right=0.1cm of ostool] {键盘/鼠标};
+    \node[font=\tiny, right=0.1cm of qemu] {串口 stdin/stdout};
+  \end{tikzpicture}
 \end{frame}
 
-\subsection{研究工作四}
+% ============================================================
+% 2. 修复概览
+% ============================================================
+\section{修复概览}
 
-\begin{frame}{研究工作四}
-  \begin{block}{并排图片}
-    并排图片示例.
-  \end{block}
-  \begin{figure}[htbp]
+\begin{frame}{修复概览：17 个 bug，7 个内核模块}
+  \begin{table}[htbp]
+    \scriptsize
     \centering
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=3cm]{thulogo.pdf}
-      \caption{并排图片1}
-      \label{fig:left_side}
-    \end{minipage}
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=3cm]{thulogo.pdf}
-      \caption{并排图片2}
-      \label{fig:right_side}
-    \end{minipage}
-  \end{figure}
+    \begin{tabular}{lcc}
+      \toprule
+      模块 & 修复数 & 典型问题 \\
+      \midrule
+      ext4 文件系统 & 3 & 块分配失败、rename 后写入、日志损坏 \\
+      内存管理 & 1 & COW 缺页 panic \\
+      epoll 事件通知 & 2 & ET 竞争窗口、NoEvent 死循环 \\
+      任务调度 & 3 & device\_mask、抢占式唤醒、双重入队 \\
+      网络协议栈 & 6 & ARP 队列、Unix socket accept/EOF \\
+      TTY 终端 & 3 & 终端尺寸、SIGWINCH、批量输出 \\
+      ostool & 2 & 鼠标事件转发、Moved 过滤 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
 \end{frame}
 
-\section{后期工作与安排}
+% ============================================================
+% 3. ext4 文件系统
+% ============================================================
+\section{ext4 文件系统}
 
-\subsection{后期研究工作}
-
-\begin{frame}{后期研究工作}
-  \begin{block}{后期研究工作}
-    \begin{itemize}
-      \setlength{\itemsep}{6pt}
-      \item XXXX
-      \item XXXX
-      \item XXXX
-      \item XXXX
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\subsection{进度安排}
-
-\begin{frame}{进度安排}
-  \begin{block}{进度安排}
-    \begin{itemize}
-      \setlength{\itemsep}{6pt}
-      \item XXXX\cite{liu2016}
-      \item XXXX\cite{ren2010}
-      \item XXXX\cite{Chen1992}
-      \item XXXX\cite{Gravagne2003}
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\section{问题与解决方案}
-
-\begin{frame}{问题与解决方案}
+\begin{frame}[fragile]{Fix 1a：块分配跳过不一致块组}
   \begin{block}{问题}
-    \begin{itemize}
-      \item XXXX
-    \end{itemize}
+    Alpine rootfs 非正常关机后，块组描述符（BGD）声称有空闲块，但位图全满。
+    原始代码遇到 ENOSPC 直接报错 → 整个文件系统报"磁盘已满"。
   \end{block}
-  \begin{block}{对应解决方案}
+  \begin{block}{修复}
+    对 ENOSPC 单独处理，跳过不一致的块组，继续尝试后续块组：
+    \begin{lstlisting}[language=Rust]
+let alloc = match alloc_res {
+    Ok(a) => a,
+    Err(e) if e.code == Errno::ENOSPC => {
+        warn!("group={} inconsistent, skip", group_idx);
+        continue;  // skip, try next group
+    }
+    Err(e) => return Err(e),
+};\end{lstlisting}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Fix 1b：rename 后写入失效}
+  \begin{block}{问题}
+    jcode 使用原子替换保存文件（write tmp $\to$ rename tmp $\to$ target）。
+    VFS 的 Inode 缓存了 path，rename 后旧路径失效 $\to$ Drop 时 sync 用旧路径写 $\to$ ENOENT。
+  \end{block}
+  \begin{block}{修复}
+    \begin{lstlisting}[language=Rust]
+// old: use path (stale after rename)
+rsext4::write_file(dev, fs, &self.path, offset, buf)
+// new: use inode number (never changes)
+rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
+  \end{block}
+  \begin{block}{根因}
+    Inode 不应该缓存 path。path 是 DirEntry（目录树）的职责，不是 Inode（磁盘实体）的职责。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fix 1c：JBD2 日志超级块损坏}
+  \begin{block}{问题}
+    Alpine rootfs 的 JBD2 超级块损坏：s\_maxlen=1（实际 8192），s\_start=8192（越界）。
+    导致挂载时日志重放失败，文件系统无法挂载。
+  \end{block}
+  \begin{block}{修复}
     \begin{itemize}
-      \item XXXX
+      \item s\_maxlen $<$ s\_first（明显损坏）$\to$ 用物理分区实际长度
+      \item s\_start $\ge$ journal\_blocks.len()（越界）$\to$ 视为"日志干净"，跳过重放
     \end{itemize}
   \end{block}
 \end{frame}
 
-\section{按时完成可能性}
+% ============================================================
+% 4. 内存管理
+% ============================================================
+\section{内存管理与 COW}
 
-\begin{frame}{按时完成可能性}
-  \begin{block}{按时完成可能性}
-    \begin{itemize}
-      \setlength{\itemsep}{6pt}
-      \item XXXX\cite{xin1994}
-      \item XXXX\cite{zhai2015}
-      \item XXXX\cite{jones2004}
-      \item XXXX\cite{mcmahan2005}
-    \end{itemize}
+\begin{frame}{Fix 2：内核态 COW 缺页 panic}
+  \begin{block}{问题}
+    \texttt{get\_as\_mut()} 获取用户空间 \texttt{\&mut} 引用。
+    另一个线程调用 \texttt{fork()} 将该页标记为 COW 只读。
+    内核写入 $\to$ CPU \#PF（写保护异常）$\to$ panic。
+  \end{block}
+  \begin{block}{修复（两层）}
+    \begin{enumerate}
+      \setlength{\itemsep}{4pt}
+      \item \textbf{主修复}：epoll/poll 改用内核缓冲区 + \texttt{vm\_write\_slice} 安全写回
+      \item \textbf{兜底}：扩展 \texttt{handle\_page\_fault}，内核态缺页时也能处理用户空间 COW
+    \end{enumerate}
+  \end{block}
+  \begin{block}{思考}
+    \texttt{get\_as\_mut()} 是不安全的访问方式，应该逐步替换为 \texttt{vm\_read/write\_slice}。
   \end{block}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{参考文献}
-  \bibliographystyle{thubeamer}
-  \bibliography{reference}
+% ============================================================
+% 5. epoll 事件通知
+% ============================================================
+\section{epoll 事件通知}
+
+\begin{frame}{Fix 3a：EPOLLET 竞争窗口}
+  \begin{block}{问题}
+    ET 模式要求"每次状态变化恰好通知一次"。
+    \texttt{mark\_not\_in\_queue()} 和 \texttt{register\_waker\_only()} 之间数据到达 $\to$ 通知丢失。
+  \end{block}
+  \begin{block}{修复}
+    注册新 Waker 后再次检查文件状态。如果数据已在缓冲区，直接将 interest 入队并唤醒 epoll\_wait。
+  \end{block}
+  \begin{block}{Fix 3b：NoEvent 路径死循环}
+    TCP socket 的 EPOLLOUT 始终就绪。虚假唤醒 $\to$ \texttt{check\_and\_register\_waker} $\to$ wake $\to$ re-queue $\to$ 死循环。
+    修复：NoEvent 路径只注册 Waker，不主动 poll/唤醒。
+  \end{block}
 \end{frame}
 
+% ============================================================
+% 6. 异步任务调度
+% ============================================================
+\section{异步任务调度}
+
+\begin{frame}{Fix 4：device\_mask 与 Waker 注册}
+  \begin{block}{核心概念}
+    TCP socket 的 \texttt{device\_mask} 决定 Waker 注册到哪个网卡设备的 PollSet 上。
+    默认为 0，只有在 \texttt{start\_connect()} 内部才被设置。
+  \end{block}
+  \begin{block}{问题}
+    Tokio 的典型流程：\texttt{epoll\_ctl(ADD)} $\to$ \texttt{connect()}。
+    epoll\_ctl 时 device\_mask=0，InterestWaker 注册到空 mask $\to$ 等于没注册。
+    connect 设好 mask 后，原来注册的 InterestWaker 不会自动迁移。
+  \end{block}
+  \begin{block}{修复}
+    poll\_io 无论阻塞/非阻塞都先注册 Waker。connect 在 mask 设好后再注册一次。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fix 5a/5b：抢占式唤醒与双重入队}
+  \begin{block}{Fix 5a：抢占式唤醒}
+    原始 \texttt{unblock\_task(task, false)} 不设置抢占标志，键盘响应延迟 20ms。
+    修复：改为 \texttt{unblock\_task(task, true)} 立即抢占。
+  \end{block}
+  \begin{block}{Fix 5b：双重入队}
+    抢占后任务在 \texttt{wait\_until} 中被唤醒，条件仍不满足（锁未释放），再次入队 $\to$ 重复条目。
+    修复：入队前检查 \texttt{in\_wait\_queue} 标志。
+  \end{block}
+  \begin{block}{为什么条件仍不满足？}
+    \texttt{notify\_one(resched=true)} 在持有锁的代码中调用。
+    唤醒 T 后锁还没释放。抢占式唤醒让 T 立刻运行，但锁还在别人手里。
+  \end{block}
+\end{frame}
+
+% ============================================================
+% 7. 网络协议栈
+% ============================================================
+\section{网络协议栈}
+
+\begin{frame}{ARP 三个修复}
+  \begin{block}{Fix 6a：队列扩容 32 $\to$ 128}
+    jcode 启动时并发建立 10-20 个 TCP 连接，32 个槽位耗尽，SYN 包被丢弃。
+  \end{block}
+  \begin{block}{Fix 6b：TTL 延长 60s $\to$ 300s}
+    AI 响应可能超过 60s，ARP 缓存过期后所有 ACK 包重新排队，压爆队列。
+  \end{block}
+  \begin{block}{Fix 6c：全队列扫描}
+    原始代码只处理队头。队列 [A, B, A, A]（A 已解析，B 未解析）$\to$ 只发第一个 A，后面的 A 永远卡在 B 后面。
+    修复：扫描整个队列，发送所有已解析的包。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Unix socket 两个修复}
+  \begin{block}{Fix 6d：非阻塞 accept}
+    \texttt{accept()} 内部用 \texttt{rx.recv().await}，完全忽略 O\_NONBLOCK。
+    Tokio 用 EPOLLET，收到 EPOLLIN 后循环 accept 直到 EAGAIN，但旧代码永远不返回 $\to$ Tokio 冻结。
+    修复：添加 \texttt{try\_accept()}，无连接时立即返回 WouldBlock。
+  \end{block}
+  \begin{block}{Fix 6e：EOF 信号顺序}
+    Drop 时 HeapProd 还活着（Rust 字段 drop 在函数体之后）。
+    对端 poll 看到 \texttt{write\_is\_held()=true} + 空缓冲区 $\to$ 误判为"没关闭"。
+    修复：先设 \texttt{my\_tx\_closed} 标志再 wake。
+  \end{block}
+\end{frame}
+
+% ============================================================
+% 8. TTY 终端
+% ============================================================
+\section{TTY 终端}
+
+\begin{frame}{Fix 7a/7b/7c：终端子系统三个修复}
+  \begin{block}{Fix 7a：查询真实终端尺寸}
+    ANSI CPR 技术：\texttt{\textbackslash x1b[9999;9999H} 移动光标到边界 $\to$
+    \texttt{\textbackslash x1b[6n} 请求位置 $\to$ 终端回复 \texttt{\textbackslash x1b[rows;colsR}。
+    默认值改为 24x80（VT100 标准）。
+  \end{block}
+  \begin{block}{Fix 7b：SIGWINCH 信号}
+    \texttt{TIOCSWINSZ} 更新窗口大小后，检查尺寸变化，给前台进程组发 SIGWINCH。
+    TUI 收到信号 $\to$ 重新读取尺寸 $\to$ 刷新界面。
+  \end{block}
+  \begin{block}{Fix 7c：批量 UART 输出}
+    每个 \texttt{\textbackslash n} 两次写操作 $\to$ 锁获取/释放 $\to$ 逐行渲染 $\to$ 闪烁。
+    修复：先收集到 Vec，一次写入，一帧原子发送。
+  \end{block}
+\end{frame}
+
+% ============================================================
+% 9. ostool 鼠标转发
+% ============================================================
+\section{ostool 鼠标转发}
+
+\begin{frame}{Fix 8a/8b：ostool 鼠标事件}
+  \begin{block}{ostool 是什么}
+    宿主机上的用户态工具，不在 QEMU 内。读取终端键盘/鼠标事件 $\to$ 写入 QEMU stdin $\to$
+    读取 QEMU stdout $\to$ 显示在宿主机终端。
+  \end{block}
+  \begin{block}{Fix 8a：鼠标事件转发}
+    问题：ostool 静默丢弃鼠标事件。
+    修复：编码为 SGR 格式（\texttt{\textbackslash x1b[<Cb;Cx;CyM/m}）转发给 guest。
+  \end{block}
+  \begin{block}{Fix 8b：过滤 Moved 事件}
+    每像素一个 Moved 事件 $\to$ TUI 每帧重绘 $\to$ UART 饱和 $\to$ 冻结。
+    修复：丢弃 Moved，只转发点击/滚动/拖拽。
+  \end{block}
+\end{frame}
+
+% ============================================================
+% 10. 关键收获
+% ============================================================
+\section{关键收获}
+
+\begin{frame}{关键收获}
+  \begin{enumerate}
+    \setlength{\itemsep}{6pt}
+    \item \textbf{VFS 分层设计}：DirEntry 树（内存缓存）vs Inode（磁盘实体）vs ext4 目录块。Inode 不应该缓存 path。
+    \item \textbf{异步执行模型}：Rust Future = poll 状态机，block\_on = 驱动器，poll\_io = 通用 I/O 等待。
+    \item \textbf{Waker 注册的生命周期}：device\_mask 在 connect 时才设置，epoll\_ctl(ADD) 可能早于 connect $\to$ 注册无效。
+    \item \textbf{抢占式调度的副作用}：提高响应速度，但引入竞争条件——任务可能在条件还不满足时就被唤醒。
+    \item \textbf{Rust Drop 顺序}：函数体先执行，字段后 drop $\to$ HeapProd 在 wake 时还活着，需要原子标志绕过。
+  \end{enumerate}
+\end{frame}
+
+% ============================================================
+% 11. AI 时代 OS 教学思考
+% ============================================================
+\section{AI 时代 OS 教学思考}
+
+\begin{frame}{AI 时代 OS 教学思考}
+  \begin{block}{传统实验的挑战}
+    AI 能自动完成"实现 syscall"类任务。单模块实验价值下降。
+  \end{block}
+  \begin{block}{建议方向}
+    \begin{enumerate}
+      \setlength{\itemsep}{4pt}
+      \item \textbf{从"实现"转向"调试"}：给有 bug 的内核，让学生定位问题
+      \item \textbf{跨模块系统性问题}：涉及多个子系统的交互 bug
+      \item \textbf{真实应用驱动}：用 jcode 这类真实应用触发边界条件
+      \item \textbf{性能调优}：从"功能正确"到"性能优化"
+      \item \textbf{安全性审查}：学会审查 AI 生成的代码
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ============================================================
+% 致谢
+% ============================================================
 \begin{frame}
-	\begin{center}
+  \begin{center}
     {\Huge\calligra Thanks for your attention!}
     \vspace{1cm}
 
@@ -248,5 +387,4 @@
   \end{center}
 \end{frame}
 
-% 结束文档撰写
 \end{document}

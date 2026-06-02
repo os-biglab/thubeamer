@@ -1,0 +1,11 @@
+\beamer@sectionintoc {2}{项目背景}{3}{0}{1}
+\beamer@sectionintoc {3}{修复概览}{5}{0}{2}
+\beamer@sectionintoc {4}{ext4 文件系统}{6}{0}{3}
+\beamer@sectionintoc {5}{内存管理与 COW}{9}{0}{4}
+\beamer@sectionintoc {6}{epoll 事件通知}{10}{0}{5}
+\beamer@sectionintoc {7}{异步任务调度}{11}{0}{6}
+\beamer@sectionintoc {8}{网络协议栈}{13}{0}{7}
+\beamer@sectionintoc {9}{TTY 终端}{15}{0}{8}
+\beamer@sectionintoc {10}{ostool 鼠标转发}{16}{0}{9}
+\beamer@sectionintoc {11}{关键收获}{17}{0}{10}
+\beamer@sectionintoc {12}{AI 时代 OS 教学思考}{18}{0}{11}

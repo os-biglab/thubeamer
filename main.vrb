@@ -1,0 +1,15 @@
+\frametitle{Fix 1b：rename 后写入失效}
+\begin{block}{问题}
+    jcode 使用原子替换保存文件（write tmp $\to$ rename tmp $\to$ target）。
+    VFS 的 Inode 缓存了 path，rename 后旧路径失效 $\to$ Drop 时 sync 用旧路径写 $\to$ ENOENT。
+  \end{block}
+  \begin{block}{修复}
+    \begin{lstlisting}[language=Rust]
+// old: use path (stale after rename)
+rsext4::write_file(dev, fs, &self.path, offset, buf)
+// new: use inode number (never changes)
+rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
+  \end{block}
+  \begin{block}{根因}
+    Inode 不应该缓存 path。path 是 DirEntry（目录树）的职责，不是 Inode（磁盘实体）的职责。
+  \end{block}
