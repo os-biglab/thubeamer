@@ -321,6 +321,71 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
+\begin{frame}[fragile]{jcode 启动全链路（上）}
+  \begin{block}{修复在 QEMU 运行过程中的位置}
+    \begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none]
+用户在 QEMU 终端输入 `jcode`
+    |
+    v
+[文件系统] ext4 挂载
+  JBD2 日志超级块损坏被安全忽略        (Fix 1c)
+  alloc_blocks 跳过不一致块组          (Fix 1a)
+  读取 /usr/bin/jcode 启动脚本
+    |
+    v
+[TTY] NTty 初始化
+  ANSI CPR 查询宿主机真实终端尺寸      (Fix 7a)
+    |
+    v
+[jcode TUI 进程] 启动
+  EnableMouseCapture -> ostool 请求鼠标  (Fix 8a)
+  ioctl(TIOCGWINSZ) -> 获取真实尺寸      (Fix 7a)
+    |
+    v
+[jcode serve 进程] 启动
+  Unix socket 监听 (O_NONBLOCK)          (Fix 6d)
+    |
+    v
+[TUI <-> serve] Unix socket IPC
+  EPOLLET 竞争窗口已修复                 (Fix 3a)
+  AxWaker 立即抢占，键盘即时响应         (Fix 5a)
+  双重等待队列 panic 已修复              (Fix 5b)
+  关闭时 EOF 信号顺序正确                (Fix 6e)\end{lstlisting}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{jcode 启动全链路（下）}
+  \begin{block}{修复在 QEMU 运行过程中的位置（续）}
+    \begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none]
+    |
+    v
+[serve 发出 HTTPS 请求]
+  非阻塞 connect Waker 正确注册          (Fix 4)
+  ARP 队列足够大                         (Fix 6a)
+  TCP 握手完成后 epoll 正确通知          (Fix 4)
+    |
+    v
+[AI 响应流回来]
+  ARP 缓存 300s 不过期                   (Fix 6b)
+  ARP 队列扫描发送                       (Fix 6c)
+  epoll EPOLLET 连续消息正常通知         (Fix 3b)
+    |
+    v
+[会话保存]
+  rename 后 write_at 用 inode 号         (Fix 1b)
+    |
+    v
+[用户鼠标操作]
+  ostool 转发点击/滚动                   (Fix 8a)
+  TIOCSWINSZ 发送 SIGWINCH               (Fix 7b)
+    |
+    v
+[TUI 输出到终端]
+  批量 UART 写，整帧原子发送             (Fix 7c)
+  COW 缺页安全处理                       (Fix 2)\end{lstlisting}
+  \end{block}
+\end{frame}
+
 % ============================================================
 % 4. 总结
 % ============================================================
