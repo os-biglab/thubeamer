@@ -1,8 +1,8 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.6.2)  3 JUN 2026 02:03
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.6.2)  3 JUN 2026 02:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main
+**main.tex
 (./main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1691,44 +1691,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 45.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  TU/lmtt/b/n --> TU/lmtt/b/n on input line 45.
- (./main.nav)
-Overfull \hbox (106.46136pt too wide) detected at line 45
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
+ (./main.nav) [1
 
-
-Overfull \hbox (106.46136pt too wide) detected at line 52
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[1
+] (./main.toc) [2
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 58
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-(./main.toc)
-Overfull \vbox (114.8692pt too high) detected at line 61
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[2
-
-]
-Overfull \hbox (106.46136pt too wide) detected at line 89
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 
 LaTeX Font Warning: Font shape `TU/DroidSansFallback(0)/b/n' undefined
 (Font)              using `TU/DroidSansFallback(0)/m/n' instead on input line 8
@@ -1742,33 +1709,14 @@ Missing character: There is no — (U+2014) in font Droid Sans Fallback/OT:scrip
 Overfull \vbox (12.51575pt too high) detected at line 89
  []
 
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 [3
 
-]
-Overfull \hbox (106.46136pt too wide) detected at line 111
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[4
+] [4
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 139
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 139
 .
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 139
@@ -1792,48 +1740,21 @@ LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <6> not available
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <5> not available
 (Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 139.
 
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[5
+ [5
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 141
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 \openout4 = `main.vrb'.
 
-
-Overfull \hbox (106.46136pt too wide) detected at line 158
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-(./main.vrb
+ (./main.vrb
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <8> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 9.
 )
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 [6
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 160
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 \openout4 = `main.vrb'.
 
-
-Overfull \hbox (106.46136pt too wide) detected at line 175
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-(./main.vrb
+ (./main.vrb
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 3.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10.95> not available
@@ -1842,171 +1763,49 @@ LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <10.95> not available
 Overfull \vbox (3.26857pt too high) detected at line 175
  []
 
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 [7
 
-]
-Overfull \hbox (106.46136pt too wide) detected at line 188
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[8
+] [8
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 208
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
 Overfull \vbox (6.83543pt too high) detected at line 208
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
  []
 
 [9
 
-]
-Overfull \hbox (106.46136pt too wide) detected at line 224
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
+] [10
 
+] [11
 
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[10
+] [12
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 241
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[11
-
-]
-Overfull \hbox (106.46136pt too wide) detected at line 256
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[12
-
-]
-Overfull \hbox (106.46136pt too wide) detected at line 274
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <12> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 274.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <12> not available
 (Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 274.
 
+ [13
 
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
+] [14
 
-[13
+] [15
 
-]
-Overfull \hbox (106.46136pt too wide) detected at line 287
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[14
+] [16
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 305
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[15
-
-]
-Overfull \hbox (106.46136pt too wide) detected at line 322
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[16
-
-]
-Overfull \hbox (106.46136pt too wide) detected at line 338
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 Missing character: There is no — (U+2014) in font Droid Sans Fallback/OT:script
 =hani;language=dflt;!
 Missing character: There is no — (U+2014) in font Droid Sans Fallback/OT:script
 =hani;language=dflt;!
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 [17
 
-]
-Overfull \hbox (106.46136pt too wide) detected at line 356
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[18
+] [18
 
 ]
-Overfull \hbox (106.46136pt too wide) detected at line 368
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
 LaTeX Font Info:    Font shape `T1/calligra/m/n' will be
 (Font)              scaled to size 35.82726pt on input line 368.
-
-Overfull \hbox (106.46136pt too wide) has occurred while \output is active
-  [] [][] [][][] [][] [][][][] [][] [][] [][][] [][][] [][] [][] [][] [][][]  
- []
-
-[19
+ [19
 
 ]
 \tf@nav=\write6
@@ -2027,22 +1826,16 @@ L3 programming layer <2022/07/14>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 24207AF745A06FCB94DCB9D93CD6D26E;1111
-(rerunfilecheck)             After:  1FB3DC44D41E2FAB23FF6F1A46DA767C;390.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 1FB3DC44D41E2FAB23FF6F1A46DA767C;390.
  ) 
 Here is how much of TeX's memory you used:
- 37242 strings out of 476415
- 810496 string characters out of 5792683
- 2018627 words of memory out of 5000000
- 58394 multiletter control sequences out of 15000+600000
+ 37245 strings out of 476415
+ 812018 string characters out of 5792683
+ 2016627 words of memory out of 5000000
+ 58397 multiletter control sequences out of 15000+600000
  575732 words of font info for 129 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 135i,20n,144p,558b,1604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 135i,20n,144p,562b,1604s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (19 pages).
