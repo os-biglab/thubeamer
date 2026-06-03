@@ -87,7 +87,7 @@
     \end{itemize}
   \end{block}
   \centering
-  \small\textbf{jcode 是一个"内核压力测试"——用到了几乎所有内核子系统}
+  \small\textbf{jcode 是一个"内核压力测试"---用到了几乎所有内核子系统}
 \end{frame}
 
 \begin{frame}{运行架构}
@@ -395,7 +395,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
     \item \textbf{VFS 分层设计}：DirEntry 树（内存缓存）vs Inode（磁盘实体）vs ext4 目录块。Inode 不应该缓存 path。
     \item \textbf{异步执行模型}：Rust Future = poll 状态机，block\_on = 驱动器，poll\_io = 通用 I/O 等待。
     \item \textbf{Waker 注册的生命周期}：device\_mask 在 connect 时才设置，epoll\_ctl(ADD) 可能早于 connect $\to$ 注册无效。
-    \item \textbf{抢占式调度的副作用}：提高响应速度，但引入竞争条件——任务可能在条件还不满足时就被唤醒。
+    \item \textbf{抢占式调度的副作用}：提高响应速度，但引入竞争条件---任务可能在条件还不满足时就被唤醒。
     \item \textbf{Rust Drop 顺序}：函数体先执行，字段后 drop $\to$ HeapProd 在 wake 时还活着，需要原子标志绕过。
   \end{enumerate}
 \end{frame}
