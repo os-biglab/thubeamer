@@ -113,7 +113,10 @@
 % ============================================================
 % 2. 修复概览
 % ============================================================
-\section{修复概览}
+% ============================================================
+% 2. 内核修复（I）：文件系统、内存、epoll、调度
+% ============================================================
+\section{内核修复（I）}
 
 \begin{frame}{修复概览：17 个 bug，7 个内核模块}
   \begin{table}[htbp]
@@ -134,11 +137,6 @@
     \end{tabular}
   \end{table}
 \end{frame}
-
-% ============================================================
-% 3. ext4 文件系统
-% ============================================================
-\section{ext4 文件系统}
 
 \begin{frame}[fragile]{Fix 1a：块分配跳过不一致块组}
   \begin{block}{问题}
@@ -189,10 +187,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
-% ============================================================
-% 4. 内存管理
-% ============================================================
-\section{内存管理与 COW}
+% 内存管理（同一 section 下的 subsection）
 
 \begin{frame}{Fix 2：内核态 COW 缺页 panic}
   \begin{block}{问题}
@@ -212,10 +207,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
-% ============================================================
-% 5. epoll 事件通知
-% ============================================================
-\section{epoll 事件通知}
+% epoll 事件通知（同一 section 下的 subsection）
 
 \begin{frame}{Fix 3a：EPOLLET 竞争窗口}
   \begin{block}{问题}
@@ -231,10 +223,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
-% ============================================================
-% 6. 异步任务调度
-% ============================================================
-\section{异步任务调度}
+% 异步任务调度（同一 section 下的 subsection）
 
 \begin{frame}{Fix 4：device\_mask 与 Waker 注册}
   \begin{block}{核心概念}
@@ -267,9 +256,9 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
 \end{frame}
 
 % ============================================================
-% 7. 网络协议栈
+% 3. 内核修复（II）：网络、TTY、ostool
 % ============================================================
-\section{网络协议栈}
+\section{内核修复（II）}
 
 \begin{frame}{ARP 三个修复}
   \begin{block}{Fix 6a：队列扩容 32 $\to$ 128}
@@ -297,10 +286,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
-% ============================================================
-% 8. TTY 终端
-% ============================================================
-\section{TTY 终端}
+% TTY 终端（同一 section 下的 subsection）
 
 \begin{frame}{Fix 7a/7b/7c：终端子系统三个修复}
   \begin{block}{Fix 7a：查询真实终端尺寸}
@@ -318,10 +304,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
-% ============================================================
-% 9. ostool 鼠标转发
-% ============================================================
-\section{ostool 鼠标转发}
+% ostool 鼠标转发（同一 section 下的 subsection）
 
 \begin{frame}{Fix 8a/8b：ostool 鼠标事件}
   \begin{block}{ostool 是什么}
@@ -339,9 +322,9 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
 \end{frame}
 
 % ============================================================
-% 10. 关键收获
+% 4. 总结
 % ============================================================
-\section{关键收获}
+\section{总结}
 
 \begin{frame}{关键收获}
   \begin{enumerate}
@@ -354,10 +337,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{enumerate}
 \end{frame}
 
-% ============================================================
-% 11. AI 时代 OS 教学思考
-% ============================================================
-\section{AI 时代 OS 教学思考}
+% AI 时代 OS 教学思考（同一 section 下）
 
 \begin{frame}{AI 时代 OS 教学思考}
   \begin{block}{传统实验的挑战}
