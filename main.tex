@@ -38,7 +38,7 @@
 }
 
 \title[StarryOS 大作业]{StarryOS 大作业总结\\[2mm] 支持 jcode 运行的内核调试与修复}
-\author[姓名]{学生：姓名\\[5mm] 学号：XXXXXXXX}
+\author[秦非冉]{学生：秦非冉\\[5mm] 学号：2023010889}
 \institute[清华大学]{\small 清华大学}
 \date{\small \vskip -10pt 2026 年 6 月}
 
@@ -66,17 +66,19 @@
 \section{项目背景}
 
 \begin{frame}{jcode 是什么}
-  \begin{block}{jcode：一个 TUI（终端用户界面）应用}
+  \begin{block}{\small jcode：一个 TUI（终端用户界面）应用}
+    \small
     \begin{itemize}
-      \setlength{\itemsep}{4pt}
+      \setlength{\itemsep}{2pt}
       \item 架构：TUI 进程 + serve 进程，通过 Unix socket 通信
       \item 技术栈：ratatui 框架、Tokio 异步运行时、reqwest HTTP 客户端
       \item 功能：AI 代码助手，支持鼠标点击、窗口调整、网络请求
     \end{itemize}
   \end{block}
-  \begin{block}{对内核的要求}
+  \begin{block}{\small 对内核的要求}
+    \small
     \begin{itemize}
-      \setlength{\itemsep}{4pt}
+      \setlength{\itemsep}{2pt}
       \item ext4 文件系统（读写文件）
       \item Unix domain socket（进程间通信）
       \item epoll + 非阻塞 I/O（Tokio 事件循环）
@@ -85,7 +87,7 @@
     \end{itemize}
   \end{block}
   \centering
-  \textbf{jcode 是一个"内核压力测试"——用到了几乎所有内核子系统}
+  \small\textbf{jcode 是一个"内核压力测试"——用到了几乎所有内核子系统}
 \end{frame}
 
 \begin{frame}{运行架构}
