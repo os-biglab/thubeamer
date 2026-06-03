@@ -321,9 +321,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{jcode 启动全链路（上）}
-  \begin{block}{\small 修复在 QEMU 运行过程中的位置}
-    \vspace{-4mm}
+\begin{frame}[fragile]{\footnotesize jcode 启动全链路（上）：修复在 QEMU 运行过程中的位置}
     \begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none, aboveskip=0pt, belowskip=0pt]
 用户在 QEMU 终端输入 `jcode`
     |
@@ -352,12 +350,9 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
   AxWaker 立即抢占，键盘即时响应         (Fix 5a)
   双重等待队列 panic 已修复              (Fix 5b)
   关闭时 EOF 信号顺序正确                (Fix 6e)\end{lstlisting}
-  \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{jcode 启动全链路（下）}
-  \begin{block}{\small 修复在 QEMU 运行过程中的位置（续）}
-    \vspace{-4mm}
+\begin{frame}[fragile]{\footnotesize jcode 启动全链路（下）：修复在 QEMU 运行过程中的位置（续）}
     \begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none, aboveskip=0pt, belowskip=0pt]
     |
     v
@@ -385,7 +380,6 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
 [TUI 输出到终端]
   批量 UART 写，整帧原子发送             (Fix 7c)
   COW 缺页安全处理                       (Fix 2)\end{lstlisting}
-  \end{block}
 \end{frame}
 
 % ============================================================

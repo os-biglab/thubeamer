@@ -1,7 +1,5 @@
-\frametitle{jcode 启动全链路（下）}
-\begin{block}{\small 修复在 QEMU 运行过程中的位置（续）}
-    \vspace{-4mm}
-    \begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none, aboveskip=0pt, belowskip=0pt]
+\frametitle{\footnotesize jcode 启动全链路（下）：修复在 QEMU 运行过程中的位置（续）}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none, aboveskip=0pt, belowskip=0pt]
     |
     v
 [serve 发出 HTTPS 请求]
@@ -28,4 +26,3 @@
 [TUI 输出到终端]
   批量 UART 写，整帧原子发送             (Fix 7c)
   COW 缺页安全处理                       (Fix 2)\end{lstlisting}
-  \end{block}
