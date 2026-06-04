@@ -197,12 +197,13 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
     另一个线程调用 \texttt{fork()} 将该页标记为 COW 只读。
     内核写入 $\to$ CPU \#PF（写保护异常）$\to$ panic。
   \end{block}
-  \begin{block}{修复（两层）}
-    \begin{enumerate}
+  \begin{block}{修复}
+    \begin{itemize}
       \setlength{\itemsep}{4pt}
-      \item \textbf{主修复}：epoll/poll 改用内核缓冲区 + \texttt{vm\_write\_slice} 安全写回
+      \item epoll/poll 已改用内核缓冲区 + \texttt{vm\_write\_slice} 安全写回
+      \item select 仍使用 \texttt{get\_as\_mut()}（未改）
       \item \textbf{兜底}：扩展 \texttt{handle\_page\_fault}，内核态缺页时也能处理用户空间 COW
-    \end{enumerate}
+    \end{itemize}
   \end{block}
   \begin{block}{思考}
     \texttt{get\_as\_mut()} 是不安全的访问方式，应该逐步替换为 \texttt{vm\_read/write\_slice}。
