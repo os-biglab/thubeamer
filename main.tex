@@ -326,7 +326,7 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
 
 \begin{frame}[fragile]{\footnotesize jcode 启动全链路（上）：修复在 QEMU 运行过程中的位置}
     \begin{lstlisting}[basicstyle=\ttfamily\tiny, frame=none, aboveskip=0pt, belowskip=0pt]
-用户在 QEMU 终端输入 `jcode`
+QEMU 启动 StarryOS 内核
     |
     v
 [文件系统] ext4 挂载
@@ -337,6 +337,9 @@ rsext4::write_inode_data(dev, fs, self.ino, offset, buf)\end{lstlisting}
     v
 [TTY] NTty 初始化
   ANSI CPR 查询宿主机真实终端尺寸      (Fix 7a)
+    |
+    v
+用户在 QEMU 终端输入 `jcode`
     |
     v
 [jcode TUI 进程] 启动
